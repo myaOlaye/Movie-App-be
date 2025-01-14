@@ -15,9 +15,11 @@ const getMovieListsModel = () => {
 };
 // Delete movie model
 const deleteMovieModel = (id) => {
-  return db.query(`DELETE FROM movieLists WHERE movielist_id = $1 RETURNING *;`, [id]).then((movie) => {
-    return movie.rows;
-  });
+  return db
+    .query(`DELETE FROM movieLists WHERE movielist_id = $1 RETURNING *;`, [id])
+    .then((movie) => {
+      return movie.rows;
+    });
 };
 // Post register user model
 const registerUserModel = (reqBody) => {
@@ -35,11 +37,36 @@ const registerUserModel = (reqBody) => {
 };
 // Post login user model
 const loginUserModel = () => {
-    return db.query(`SELECT * FROM users;`).then((user) => {
-        return user.rows;
+  return db.query(`SELECT * FROM users;`).then((user) => {
+    return user.rows;
+  });
+};
+
+const selectMovieLists = (owner_id) => {
+  return db
+    .query("SELECT * FROM movieLists WHERE owner_id = $1", [owner_id])
+    .then(({ rows }) => {
+      return rows;
     });
-}
+};
 
+const selectMovieListItems = (movielist_id) => {
+  return db
+    .query("SELECT * FROM movieListItems WHERE movielist_id = $1", [
+      movielist_id,
+    ])
+    .then(({ rows }) => {
+      console.log(rows);
+      return rows;
+    });
+};
 
-
-module.exports = { getUsersModel, getMovieListsModel, registerUserModel,loginUserModel,deleteMovieModel};
+module.exports = {
+  getUsersModel,
+  getMovieListsModel,
+  registerUserModel,
+  loginUserModel,
+  deleteMovieModel,
+  selectMovieLists,
+  selectMovieListItems,
+};

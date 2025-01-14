@@ -10,6 +10,7 @@ module.exports = [
   {
     movielist_id: 4,
     tmdb_movie_id: 640,
+    notes: "hey from devs",
   },
   {
     movielist_id: 5,
@@ -18,6 +19,7 @@ module.exports = [
   {
     movielist_id: 2,
     tmdb_movie_id: 402,
+    notes: "testing notes",
   },
   {
     movielist_id: 5,

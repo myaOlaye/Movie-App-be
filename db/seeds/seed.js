@@ -44,7 +44,8 @@ const seed = ({
         CREATE TABLE movieListItems (
           tmdb_movie_id INT NOT NULL,
           movielist_id INT REFERENCES movieLists(movielist_id),
-          added_at TIMESTAMP DEFAULT NOW()
+          added_at TIMESTAMP DEFAULT NOW(),
+          notes VARCHAR
         );`);
     })
     .then(() => {
@@ -79,10 +80,11 @@ const seed = ({
     })
     .then(() => {
       const insertMovieListItemsQueryStr = format(
-        "INSERT INTO movieListItems (tmdb_movie_id, movielist_id) VALUES %L",
-        movieListItemsData.map(({ tmdb_movie_id, movielist_id }) => [
+        "INSERT INTO movieListItems (tmdb_movie_id, movielist_id, notes) VALUES %L",
+        movieListItemsData.map(({ tmdb_movie_id, movielist_id, notes }) => [
           tmdb_movie_id,
           movielist_id,
+          notes,
         ])
       );
       return db.query(insertMovieListItemsQueryStr);
