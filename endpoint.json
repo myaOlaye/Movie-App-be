@@ -1,0 +1,33 @@
+{
+    "GET /api": {
+      "description": "serves up a json representation of all the available endpoints of the api"
+    },
+    "GET /api/users": {
+      "description": "serves an array of all users",
+      "queries": [],
+      "exampleResponse": {
+        "users":  [{
+        "user_id": 1,
+        "username": "sanderson",
+        "email": "jonesrichard@example.com",
+        "password_hash": "ot_45MRuCH",
+        "profile_img": "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
+        "created_at": "2018-05-30T15:59:13.341Z"
+        }]
+      }
+    },
+    "GET /api/movielists": {
+      "description": "serves an array of all movielists selected by the user",
+      "exampleResponse": {
+        "movielists": [
+          {
+            "id": 1,
+            "name": "John’s Favorite Movies",
+            "owner_id": 1,
+            "created_at": "2018-05-30T15:59:13.341Z",
+            "updated_at": "2018-05-30T15:59:13.341Z"
+          }
+        ]
+      }
+    }
+  }
