@@ -4,6 +4,11 @@ module.exports = [
     tmdb_movie_id: 911,
   },
   {
+    movielist_id: 3,
+    tmdb_movie_id: 911,
+    notes: "same movie, different list",
+  },
+  {
     movielist_id: 1,
     tmdb_movie_id: 279,
   },

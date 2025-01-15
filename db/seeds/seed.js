@@ -43,7 +43,7 @@ const seed = ({
       return db.query(`
         CREATE TABLE movieListItems (
           tmdb_movie_id INT NOT NULL,
-          movielist_id INT REFERENCES movieLists(movielist_id),
+          movielist_id INT REFERENCES movieLists(movielist_id) ON DELETE CASCADE,
           added_at TIMESTAMP DEFAULT NOW(),
           notes VARCHAR
         );`);

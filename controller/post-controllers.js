@@ -1,0 +1,67 @@
+const bcrypt = require("bcrypt");
+const {
+  registerUserModel,
+  loginUserModel,
+  postMovieToListModel,
+} = require("../model/post-models");
+
+const registerUser = (req, res, next) => {
+  const reqBody = req.body;
+  registerUserModel(reqBody).then((user) => {
+    res
+      .status(201)
+      .json({ success: true, message: "User registered successfully", user });
+  });
+};
+
+const loginUser = (req, res) => {
+  const { email, password } = req.body;
+  loginUserModel()
+    .then((users) => {
+      const findUser = users.find((user) => user.email === email);
+
+      if (!findUser) {
+        return res
+          .status(404)
+          .json({ success: false, message: "Sorry user not found" });
+      }
+      bcrypt.compare(password, findUser.password_hash, (err, isMatch) => {
+        if (err) throw err;
+        if (isMatch) {
+          res.status(200).json({
+            success: true,
+            message: "User logged in successfully",
+            user: findUser,
+          });
+        } else {
+          res
+            .status(400)
+            .json({ success: false, message: "Incorrect password" });
+        }
+      });
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error", error: err });
+    });
+};
+
+const postMovieToList = (req, res, next) => {
+  const { movielist_id, tmdb_movie_id, notes = null } = req.body;
+  postMovieToListModel(movielist_id, tmdb_movie_id, notes)
+    .then((addedMovie) => {
+      res.status(201).json({
+        success: true,
+        message: `Movie ${tmdb_movie_id} added to Movie list ${movielist_id} successfully`,
+        addedMovie,
+      });
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error", error: err });
+    });
+};
+
+module.exports = { registerUser, loginUser, postMovieToList };
