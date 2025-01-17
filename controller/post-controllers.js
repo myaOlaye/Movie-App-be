@@ -4,6 +4,7 @@ const {
   registerUserModel,
   loginUserModel,
   postMovieToListModel,
+  createMovieListModel,
 } = require("../model/post-models");
 
 const registerUser = (req, res, next) => {
@@ -78,3 +79,24 @@ const authotization = (req, res, next) => {
   next();
 };
 module.exports = { registerUser, loginUser, postMovieToList,authotization };
+
+
+const createMovieList = (req, res, next) => {
+  const { owner_id, name } = req.body;
+
+  createMovieListModel(owner_id, name)
+    .then((createdList) => {
+      res.status(201).json({
+        success: true,
+        message: `Movie List ${[0].name} created successfully`,
+        createdList,
+      });
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error", error: err });
+    });
+};
+
+module.exports = { registerUser, loginUser, postMovieToList, createMovieList };

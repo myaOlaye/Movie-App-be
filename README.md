@@ -16,4 +16,4 @@ DELETE api/movielists/:movielist_id - deleting a movie list ✅
 
 GET api/movielistItems/:movielist_id ✅
 POST api/movielistsitems ✅
-GET api/movielistsitems/:movielist_id/:tmdb_movie_id
+GET api/movielistsitems/:movielist_id/:tmdb_movie_id✅

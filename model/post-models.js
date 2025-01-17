@@ -32,4 +32,19 @@ const postMovieToListModel = (movielist_id, tmdb_movie_id, notes) => {
     });
 };
 
-module.exports = { registerUserModel, loginUserModel, postMovieToListModel };
+const createMovieListModel = (owner_id, name) => {
+  return db
+    .query(
+      "INSERT INTO movieLists (owner_id, name) VALUES ($1, $2) RETURNING *;",
+      [owner_id, name]
+    )
+    .then(({ rows }) => {
+      return rows;
+    });
+};
+module.exports = {
+  registerUserModel,
+  loginUserModel,
+  postMovieToListModel,
+  createMovieListModel,
+};
