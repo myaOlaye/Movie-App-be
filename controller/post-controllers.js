@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const JWT = require("jsonwebtoken");
 const {
   registerUserModel,
   loginUserModel,
@@ -29,10 +30,12 @@ const loginUser = (req, res) => {
       bcrypt.compare(password, findUser.password_hash, (err, isMatch) => {
         if (err) throw err;
         if (isMatch) {
+            const token = JWT.sign({ email: findUser.email, username:findUser.username, user_id: findUser.user_id, image: findUser.profile_img}, 'ehan', { expiresIn: "1h" }) 
           res.status(200).json({
             success: true,
             message: "User logged in successfully",
             user: findUser,
+            token: token
           });
         } else {
           res
@@ -64,6 +67,19 @@ const postMovieToList = (req, res, next) => {
         .json({ success: false, message: "Internal server error", error: err });
     });
 };
+const authotization = (req, res, next) => {
+  const {token} = req.body
+  if (!token) {
+    return res.json({ success: false, msg: "Sorry Access Denied" });
+  }
+  const decode = JWT.verify(token, 'ehan');
+  res
+    .status(201)
+    .json({ success: true, msg: "Thank you for verification", decode });
+  next();
+};
+module.exports = { registerUser, loginUser, postMovieToList,authotization };
+
 
 const createMovieList = (req, res, next) => {
   const { owner_id, name } = req.body;

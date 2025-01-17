@@ -1,4 +1,5 @@
 const endPoints = require("../endpoint.json");
+const JWT = require("jsonwebtoken");
 const {
   getUsersModel,
   getMovieListsModel,
@@ -77,11 +78,12 @@ const getMovieFromList = (req, res, next) => {
     });
 };
 
+
 module.exports = {
   getApi,
   getUsers,
   getMovieLists,
   getMovieListsbyUserId,
   getMovieListItems,
-  getMovieFromList,
+  getMovieFromList
 };

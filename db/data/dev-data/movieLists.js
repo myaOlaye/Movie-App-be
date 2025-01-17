@@ -68,5 +68,5 @@ module.exports = [
     name: "Mind-Bending Thrillers",
     created_at: "2025-01-10 13:00:00",
     updated_at: "2025-01-10 13:00:00",
-  },
+  }
 ];
