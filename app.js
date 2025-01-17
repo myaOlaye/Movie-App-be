@@ -4,7 +4,7 @@ const cors = require("cors");
 const apiRouter = require("./routes/api-router");
 
 //middleware
-app.use("cors");
+app.use(cors());
 app.use(express.json());
 
 app.use("/api", apiRouter);

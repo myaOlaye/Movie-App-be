@@ -10,7 +10,9 @@ const {
   deleteMovieList,
 } = require("../controller/delete-controllers");
 
-movieListRouter.route("/").get(getMovieLists);
+const { createMovieList } = require("../controller/post-controllers");
+
+movieListRouter.route("/").get(getMovieLists).post(createMovieList);
 movieListRouter.route("/:movielist_id/:tmdb_movie_id").delete(deleteMovie);
 movieListRouter.route("/:movielist_id").delete(deleteMovieList);
 movieListRouter.route("/:owner_id").get(getMovieListsbyUserId);
