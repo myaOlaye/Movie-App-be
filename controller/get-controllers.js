@@ -78,12 +78,11 @@ const getMovieFromList = (req, res, next) => {
     });
 };
 
-
 module.exports = {
   getApi,
   getUsers,
   getMovieLists,
   getMovieListsbyUserId,
   getMovieListItems,
-  getMovieFromList
+  getMovieFromList,
 };
