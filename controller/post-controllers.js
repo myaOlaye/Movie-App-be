@@ -5,6 +5,7 @@ const {
   loginUserModel,
   postMovieToListModel,
   createMovieListModel,
+  shareMovieListModel,
 } = require("../model/post-models");
 
 const registerUser = (req, res, next) => {
@@ -106,6 +107,23 @@ const createMovieList = (req, res, next) => {
         .json({ success: false, message: "Internal server error", error: err });
     });
 };
+const shareMovieList = (req, res, next) => {
+  const { movielist_id, owner_username, receiver_username } = req.body;
+
+  shareMovieListModel(movielist_id, owner_username, receiver_username)
+    .then((sharedMovieList) => {
+      res.status(201).json({
+        success: true,
+        message: `Movie List shared with ${receiver_username}`,
+        sharedMovieList,
+      });
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error", error: err });
+    });
+};
 
 module.exports = {
   registerUser,
@@ -113,4 +131,5 @@ module.exports = {
   postMovieToList,
   createMovieList,
   authotization,
+  shareMovieList,
 };

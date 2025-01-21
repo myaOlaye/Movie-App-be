@@ -42,9 +42,26 @@ const createMovieListModel = (owner_id, name) => {
       return rows;
     });
 };
+
+const shareMovieListModel = (
+  movielist_id,
+  owner_username,
+  receiver_username
+) => {
+  return db
+    .query(
+      `INSERT INTO movieListShares (movielist_id, owner_username,receiver_username, status) VALUES ($1, $2, $3,'pending') RETURNING *;`,
+      [movielist_id, owner_username, receiver_username]
+    )
+    .then(({ rows }) => {
+      return rows;
+    });
+};
+
 module.exports = {
   registerUserModel,
   loginUserModel,
   postMovieToListModel,
   createMovieListModel,
+  shareMovieListModel,
 };

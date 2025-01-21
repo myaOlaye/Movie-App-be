@@ -19,11 +19,19 @@ const seed = ({
       return db.query(`DROP TABLE IF EXISTS users ;`);
     })
     .then(() => {
+      return db.query(`DROP TYPE IF EXISTS share_status;`);
+    })
+    .then(() => {
+      return db.query(`
+        CREATE TYPE share_status AS ENUM ('pending', 'accepted', 'declined');
+      `);
+    })
+    .then(() => {
       return db.query(`
             CREATE TABLE users (
               user_id SERIAL PRIMARY KEY,
-              username VARCHAR(50) not null,
-              email VARCHAR(255) not null,
+              username VARCHAR(50) not null UNIQUE ,
+              email VARCHAR(255) not null UNIQUE,
               password_hash VARCHAR not null,
               profile_img VARCHAR DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700',
               created_at TIMESTAMP DEFAULT NOW()
@@ -51,8 +59,11 @@ const seed = ({
     .then(() => {
       return db.query(`
         CREATE TABLE movieListShares (
+         share_id SERIAL PRIMARY KEY,
           movielist_id INT REFERENCES movieLists(movielist_id) ON DELETE CASCADE,
-          user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+          owner_username VARCHAR REFERENCES users(username) ON DELETE CASCADE,
+          receiver_username VARCHAR REFERENCES users(username) ON DELETE CASCADE,
+          status share_status NOT NULL,
           shared_at TIMESTAMP DEFAULT NOW()
         );`);
     })
@@ -91,11 +102,15 @@ const seed = ({
     })
     .then(() => {
       const insertMovieListSharesQueryStr = format(
-        "INSERT INTO movieListShares (movielist_id, user_id) VALUES %L",
-        movieListShareData.map(({ movielist_id, user_id }) => [
-          movielist_id,
-          user_id,
-        ])
+        "INSERT INTO movieListShares (movielist_id, owner_username, receiver_username, status) VALUES %L",
+        movieListShareData.map(
+          ({ movielist_id, owner_username, receiver_username, status }) => [
+            movielist_id,
+            owner_username,
+            receiver_username,
+            status,
+          ]
+        )
       );
       return db.query(insertMovieListSharesQueryStr);
     });

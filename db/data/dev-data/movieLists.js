@@ -13,6 +13,8 @@ module.exports = [
     created_at: "2025-01-02 14:30:00",
     updated_at: "2025-01-02 14:30:00",
   },
+  // this is a list that sanderson has not shared, but he has shared list 1 with two other users
+  // so in the GET api/movielists/:owner_id we should exclude list 1
   {
     movieList_id: 3,
     owner_id: 1,
@@ -68,5 +70,5 @@ module.exports = [
     name: "Mind-Bending Thrillers",
     created_at: "2025-01-10 13:00:00",
     updated_at: "2025-01-10 13:00:00",
-  }
+  },
 ];
