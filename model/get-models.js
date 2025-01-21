@@ -12,9 +12,20 @@ const getMovieListsModel = () => {
   });
 };
 
-const selectMovieLists = (owner_id) => {
+// when testing for owner_id 1 here (sanderson), movielist of id 1 should NOT be included, working fine
+const selectMovieLists = (owner_id, excludedIdsArray) => {
   return db
-    .query("SELECT * FROM movieLists WHERE owner_id = $1", [owner_id])
+    .query(
+      `SELECT * FROM movieLists WHERE owner_id = $1 
+     ${
+       excludedIdsArray.length > 0
+         ? `AND movielist_id NOT IN (${excludedIdsArray
+             .map((_, idx) => `$${idx + 2}`)
+             .join(", ")})`
+         : ""
+     }`,
+      [owner_id, ...excludedIdsArray]
+    )
     .then(({ rows }) => {
       return rows;
     });
@@ -41,10 +52,22 @@ const getMovieFromListModel = (movielist_id, tmdb_movie_id) => {
     });
 };
 
+const getSharedMovieListModel = (username) => {
+  return db
+    .query(
+      "SELECT * FROM movieListShares WHERE owner_username = $1 OR receiver_username = $1",
+      [username]
+    )
+    .then(({ rows }) => {
+      return rows;
+    });
+};
+
 module.exports = {
   getUsersModel,
   getMovieListsModel,
   selectMovieLists,
   selectMovieListItems,
   getMovieFromListModel,
+  getSharedMovieListModel,
 };

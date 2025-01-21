@@ -6,6 +6,7 @@ const {
   selectMovieLists,
   selectMovieListItems,
   getMovieFromListModel,
+  getSharedMovieListModel,
 } = require("../model/get-models");
 
 const getApi = (req, res, next) => {
@@ -44,8 +45,11 @@ const getMovieLists = (req, res, next) => {
 
 const getMovieListsbyUserId = (req, res, next) => {
   const { owner_id } = req.params;
+  const excludedIdsArray = req.query.excluded_movielist_ids
+    ? req.query.excluded_movielist_ids.split(",").map(Number)
+    : [];
 
-  selectMovieLists(owner_id)
+  selectMovieLists(owner_id, excludedIdsArray)
     .then((movieLists) => {
       res.status(200).send({ movieLists });
     })
@@ -78,6 +82,18 @@ const getMovieFromList = (req, res, next) => {
     });
 };
 
+const getSharedMovieLists = (req, res, next) => {
+  const { username } = req.params;
+
+  getSharedMovieListModel(username)
+    .then((movieShares) => {
+      res.status(200).send({ movieShares });
+    })
+    .catch((err) => {
+      res.send({ err });
+    });
+};
+
 module.exports = {
   getApi,
   getUsers,
@@ -85,4 +101,5 @@ module.exports = {
   getMovieListsbyUserId,
   getMovieListItems,
   getMovieFromList,
+  getSharedMovieLists,
 };
