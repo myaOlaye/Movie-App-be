@@ -2,11 +2,13 @@ const endPoints = require("../endpoint.json");
 const JWT = require("jsonwebtoken");
 const {
   getUsersModel,
+  getUserModel,
   getMovieListsModel,
   selectMovieLists,
   selectMovieListItems,
   getMovieFromListModel,
   getSharedMovieListModel,
+  getMovieListByMovieListIdModel,
 } = require("../model/get-models");
 
 const getApi = (req, res, next) => {
@@ -24,6 +26,17 @@ const getUsers = (req, res) => {
       res
         .status(500)
         .json({ success: false, message: "Internal server error", error: err });
+    });
+};
+
+const getUser = (req, res, next) => {
+  const { username } = req.params;
+  getUserModel(username)
+    .then((user) => {
+      res.status(200).send({ user });
+    })
+    .catch((err) => {
+      res.status(404).send({ msg: "Not found" });
     });
 };
 
@@ -86,8 +99,19 @@ const getSharedMovieLists = (req, res, next) => {
   const { username } = req.params;
 
   getSharedMovieListModel(username)
-    .then((movieShares) => {
-      res.status(200).send({ movieShares });
+    .then((movieListShares) => {
+      res.status(200).send({ movieListShares });
+    })
+    .catch((err) => {
+      res.send({ err });
+    });
+};
+
+const getMovieListByMovieListId = (req, res, next) => {
+  const { movielist_id } = req.params;
+  getMovieListByMovieListIdModel(movielist_id)
+    .then((movieList) => {
+      res.status(200).send({ movieList });
     })
     .catch((err) => {
       res.send({ err });
@@ -102,4 +126,6 @@ module.exports = {
   getMovieListItems,
   getMovieFromList,
   getSharedMovieLists,
+  getMovieListByMovieListId,
+  getUser,
 };
