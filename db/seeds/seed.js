@@ -30,6 +30,7 @@ const seed = ({
       return db.query(`
             CREATE TABLE users (
               user_id SERIAL PRIMARY KEY,
+              name VARCHAR(255) not null,
               username VARCHAR(50) not null UNIQUE ,
               email VARCHAR(255) not null UNIQUE,
               password_hash VARCHAR not null,
@@ -69,9 +70,10 @@ const seed = ({
     })
     .then(() => {
       const insertUsersQueryStr = format(
-        "INSERT INTO users (username, email, password_hash, profile_img, created_at) VALUES %L",
+        "INSERT INTO users (name, username, email, password_hash, profile_img, created_at) VALUES %L",
         usersData.map(
-          ({ username, email, password_hash, profile_img, created_at }) => [
+          ({ name, username, email, password_hash, profile_img, created_at }) => [
+            name,
             username,
             email,
             password_hash,

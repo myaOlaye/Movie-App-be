@@ -2,12 +2,12 @@ const db = require("../db/connection");
 const bcrypt = require("bcrypt");
 
 const registerUserModel = (reqBody) => {
-  const { name, email, password, image } = reqBody;
+  const { name, username, email, password, image } = reqBody;
   return bcrypt.hash(password, 10).then((hashPassword) => {
     return db
       .query(
-        `INSERT INTO users (username,email, password_hash, profile_img) VALUES ($1, $2, $3, $4) RETURNING *;`,
-        [name, email, hashPassword, image]
+        `INSERT INTO users (name, username,email, password_hash, profile_img) VALUES ($1, $2, $3, $4, $5) RETURNING *;`,
+        [name, username, email, hashPassword, image]
       )
       .then((user) => {
         return user.rows;
