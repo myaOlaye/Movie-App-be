@@ -11,6 +11,7 @@ GET api/movielists/:owner_id ❗ NEEDS TO BE UPDATED - to take rows with specifi
 POST api/movielists ✅
 DELTE api/movielists/:movielist_id/:tmdb_movie_id✅ - deleting movie from a specific movie list
 DELETE api/movielists/:movielist_id - deleting a movie list ✅
+GET api/movielists/:movielist_id❗ NEEDS TO BE ADDED for sharing functionality
 
 # MovieListItems
 

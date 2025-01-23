@@ -6,6 +6,17 @@ const getUsersModel = () => {
   });
 };
 
+const getUserModel = (username) => {
+  return db
+    .query(`SELECT * FROM users WHERE username = $1;`, [username])
+    .then(({ rows }) => {
+      if (Object.keys(rows).length === 0) {
+        return Promise.reject({ status: 404, msg: "Not found" });
+      }
+      return rows[0];
+    });
+};
+
 const getMovieListsModel = () => {
   return db.query(`SELECT * FROM movieLists;`).then((movielists) => {
     return movielists.rows;
@@ -63,6 +74,14 @@ const getSharedMovieListModel = (username) => {
     });
 };
 
+const getMovieListByMovieListIdModel = (movielist_id) => {
+  return db
+    .query("SELECT * FROM movieLists WHERE movielist_id = $1", [movielist_id])
+    .then(({ rows }) => {
+      return rows;
+    });
+};
+
 module.exports = {
   getUsersModel,
   getMovieListsModel,
@@ -70,4 +89,6 @@ module.exports = {
   selectMovieListItems,
   getMovieFromListModel,
   getSharedMovieListModel,
+  getMovieListByMovieListIdModel,
+  getUserModel,
 };
