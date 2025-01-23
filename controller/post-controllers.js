@@ -34,6 +34,7 @@ const loginUser = (req, res) => {
           const token = JWT.sign(
             {
               email: findUser.email,
+              name: findUser.name,
               username: findUser.username,
               user_id: findUser.user_id,
               image: findUser.profile_img,

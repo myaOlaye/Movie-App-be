@@ -1,92 +1,94 @@
 module.exports = [
   {
-    "email": "jonesrichard@example.com",
     "user_id": 1,
+    "name": "Samuel Anderson",
     "username": "sanderson",
-    "name": "Richard Jones",
-    "created_at": "2025-01-10T12:26:41.740325",
-    "profile_img": null,
-    "password_hash": "ot_45MRuCH"
+    "email": "sanderson@example.com",
+    "password_hash": "hashed_password_sanderson",
+    "profile_img": "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
+    "created_at": "2025-01-20T10:00:00"
   },
   {
-    "email": "elizabeth18@example.net",
     "user_id": 2,
+    "name": "Erica Guerra",
     "username": "guerraerica",
-    "name": "Elizabeth Guerra",
-    "created_at": "2025-01-10T12:26:41.740325",
-    "profile_img": null,
-    "password_hash": "f4DCsuDf$v"
+    "email": "guerraerica@example.com",
+    "password_hash": "hashed_password_guerraerica",
+    "profile_img": "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
+    "created_at": "2025-01-20T11:00:00"
   },
   {
-    "email": "courtneymorgan@example.net",
     "user_id": 3,
+    "name": "Nathan Lee",
     "username": "nlee",
-    "name": "Courtney Morgan",
-    "created_at": "2025-01-10T12:26:41.740325",
-    "profile_img": null,
-    "password_hash": ")Fg@p8CfZ1"
+    "email": "nlee@example.com",
+    "password_hash": "hashed_password_nlee",
+    "profile_img": "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
+    "created_at": "2025-01-20T12:00:00"
   },
   {
-    "email": "berryamanda@example.net",
     "user_id": 4,
+    "name": "Savannah Webb",
     "username": "webbsavannah",
-    "name": "Amanda Berry",
-    "created_at": "2025-01-10T12:26:41.740325",
-    "profile_img": null,
-    "password_hash": "HW68HWeb)$"
+    "email": "webbsavannah@example.com",
+    "password_hash": "hashed_password_webbsavannah",
+    "profile_img": "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
+    "created_at": "2025-01-20T13:00:00"
   },
   {
-    "email": "goodmancynthia@example.com",
     "user_id": 5,
+    "name": "Hannah Morris",
     "username": "hmorris",
-    "name": "Cynthia Goodman",
-    "created_at": "2025-01-10T12:26:41.740325",
-    "profile_img": null,
-    "password_hash": "I8co7WoCY*"
+    "email": "hmorris@example.com",
+    "password_hash": "hashed_password_hmorris",
+    "profile_img": "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
+    "created_at": "2025-01-20T14:00:00"
   },
   {
-    "email": "brownmariah@example.net",
     "user_id": 6,
-    "username": "bmoore",
-    "name": "Mariah Brown",
-    "created_at": "2025-01-10T12:26:41.740325",
-    "profile_img": null,
-    "password_hash": "+C%8vWxePd"
-  },
-  {
-    "email": "landrymary@example.com",
-    "user_id": 7,
+    "name": "Mary Rogers",
     "username": "maryrogers",
-    "name": "Mary Landry",
-    "created_at": "2025-01-10T12:26:41.740325",
-    "profile_img": null,
-    "password_hash": "B2GtBxVw$w"
+    "email": "maryrogers@example.com",
+    "password_hash": "hashed_password_maryrogers",
+    "profile_img": "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
+    "created_at": "2025-01-20T15:00:00"
   },
   {
-    "email": "sarah51@example.net",
-    "user_id": 8,
+    "user_id": 7,
+    "name": "Zachary Day",
     "username": "zday",
-    "name": "Sarah Day",
-    "created_at": "2025-01-10T12:26:41.740325",
-    "profile_img": null,
-    "password_hash": "OY(92Xg3yp"
+    "email": "zday@example.com",
+    "password_hash": "hashed_password_zday",
+    "profile_img": "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
+    "created_at": "2025-01-20T16:00:00"
   },
   {
-    "email": "ashleylane@example.com",
-    "user_id": 9,
+    "user_id": 8,
+    "name": "Kristina Johnson",
     "username": "kristina02",
-    "name": "Ashley Lane",
-    "created_at": "2025-01-10T12:26:41.740325",
-    "profile_img": null,
-    "password_hash": "$0*oIlbX6h"
+    "email": "kristina02@example.com",
+    "password_hash": "hashed_password_kristina02",
+    "profile_img": "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
+    "created_at": "2025-01-20T17:00:00"
   },
   {
-    "email": "victoriacook@example.net",
-    "user_id": 10,
+    "user_id": 9,
+    "name": "Andrew West",
     "username": "awest",
-    "name": "Victoria Cook",
-    "created_at": "2025-01-10T12:26:41.740325",
-    "profile_img": null,
-    "password_hash": "y!!R0DuHoE"
+    "email": "awest@example.com",
+    "password_hash": "hashed_password_awest",
+    "profile_img": "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
+    "created_at": "2025-01-20T18:00:00"
+  },
+  {
+    "user_id": 10,
+    "name": "Brandon Moore",
+    "username": "bmoore",
+    "email": "bmoore@example.com",
+    "password_hash": "hashed_password_bmoore",
+    "profile_img": "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
+    "created_at": "2025-01-20T19:00:00"
   }
 ]
+
+

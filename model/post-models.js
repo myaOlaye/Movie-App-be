@@ -6,7 +6,7 @@ const registerUserModel = (reqBody) => {
   return bcrypt.hash(password, 10).then((hashPassword) => {
     return db
       .query(
-        `INSERT INTO users (name, username,email, password_hash, profile_img) VALUES ($1, $2, $3, $4, $5) RETURNING *;`,
+        `INSERT INTO users (name, username, email, password_hash, profile_img) VALUES ($1, $2, $3, $4, $5) RETURNING *;`,
         [name, username, email, hashPassword, image]
       )
       .then((user) => {
