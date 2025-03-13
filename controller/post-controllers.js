@@ -78,18 +78,18 @@ const postMovieToList = (req, res, next) => {
         .json({ success: false, message: "Internal server error", error: err });
     });
 };
+
 const authotization = (req, res, next) => {
   const { token } = req.body;
   if (!token) {
     return res.json({ success: false, msg: "Sorry Access Denied" });
   }
-  const decode = JWT.verify(token, "ehan");
+  const decode = JWT.verify(token, "ehan", { ignoreExpiration: true });
   res
     .status(201)
     .json({ success: true, msg: "Thank you for verification", decode });
   next();
 };
-module.exports = { registerUser, loginUser, postMovieToList, authotization };
 
 const createMovieList = (req, res, next) => {
   const { owner_id, name } = req.body;
